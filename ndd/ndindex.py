@@ -45,7 +45,7 @@ class NearDuplicatesIndex:
     def calculate_ngrams(self, doc, length=3):
         num_terms = len(doc)
         ngrams = []
-        for t in xrange(num_terms):
+        for t in range(num_terms):
             if num_terms <= t+length-1:
                 break # n-2 ngrams!
             ngram_tokens = doc[t:t+length]
@@ -61,7 +61,7 @@ class NearDuplicatesIndex:
     def calculate_sketch(self, docname, doc_ngrams):
         p = self.p
         sketch = [0] * self.n
-        for s in xrange(self.n):
+        for s in range(self.n):
             f_min = sys.float_info.max
             a_s = self.pairs_of_randoms[s][0]
             b_s = self.pairs_of_randoms[s][1]
@@ -76,7 +76,7 @@ class NearDuplicatesIndex:
     #
     # Returns nothing
     def generate_random_pairs_of_numbers(self):
-        for i in xrange(25):
+        for i in range(25):
             a = random.randint(1, self.p-1)
             b = random.randint(0, self.p-1)
             self.pairs_of_randoms.append((a,b))
@@ -101,7 +101,7 @@ class NearDuplicatesIndex:
 
         # get num of same sketch values
         k = 0.0
-        for index in xrange(self.n):
+        for index in range(self.n):
             if self.sketches[docname1][index] == self.sketches[docname2][index]:
                 k += 1
         return self.jaccard(k)

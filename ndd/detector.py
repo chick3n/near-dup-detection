@@ -16,7 +16,7 @@ class Detector:
         # Calculate near-duplicates index
         for file in self.files:
             filename = self.filename(file)
-            with open(filename) as f:
+            with open(filename, encoding='utf-8') as f:
                 doc = f.read().strip().strip(",.!|&-_()[]<>{}/\"'").strip().split(" ")
                 self.index.append(doc, filename)
 
