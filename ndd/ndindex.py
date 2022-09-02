@@ -20,9 +20,12 @@ class NearDuplicatesIndex:
     def append(self, doc, docname):
         if docname in self.sketches:
             raise Exception
+        self.sketches[docname] = self.get_sketch(doc, docname)
+
+    def get_sketch(self, doc, docname):
         p = self.p
         ngrams = self.calculate_ngrams(doc, 3)
-        self.sketches[docname] = self.calculate_sketch(docname, ngrams)
+        return self.calculate_sketch(docname, ngrams)
 
     # Append if comparison between doc's jaccard coefficient and every doc in the
     # corpus is less than a specified value.
@@ -95,14 +98,14 @@ class NearDuplicatesIndex:
     # docname2 - second document's name
     #
     # Returns the estimated jaccard coefficient between both documents
-    def get_jaccard(self, docname1, docname2):
-        if not (self.sketches[docname1] or self.sketches[docname2]):
+    def get_jaccard(self, sketch, docname2):
+        if not (sketch or self.sketches[docname2]):
             raise Exception
 
         # get num of same sketch values
         k = 0.0
         for index in range(self.n):
-            if self.sketches[docname1][index] == self.sketches[docname2][index]:
+            if sketch[index] == self.sketches[docname2][index]:
                 k += 1
         return self.jaccard(k)
 

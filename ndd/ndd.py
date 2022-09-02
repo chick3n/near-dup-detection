@@ -6,7 +6,12 @@
 
 import operator, copy
 from detector import Detector
+import argparse
 
+parser = argparse.ArgumentParser(description='De-Duplicate file detection.')
+parser.add_argument('-s', help='source path')
+parser.add_argument('-d', help='destionation path')
+args = parser.parse_args()
 
 def near_three_duplicates():
     print("Printing three nearest neighbors of the first 10 files...")
@@ -40,7 +45,7 @@ def near_three_duplicates():
 
 if __name__ == "__main__":
     # run the program
-    detector = Detector('./test')
+    detector = Detector(args.s, args.d)
     print("Checking for duplicates using NDD...")
     duplicates = detector.check_for_duplicates()
     if duplicates:
