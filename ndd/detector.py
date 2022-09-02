@@ -5,7 +5,7 @@
 
 import os
 from pkgutil import get_data
-from ndindex import NearDuplicatesIndex
+from .ndindex import NearDuplicatesIndex
 
 class Detector:
     def __init__(self, source, dest):

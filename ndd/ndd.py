@@ -5,7 +5,7 @@
 # http://www.parkermoore.de
 
 import operator, copy
-from detector import Detector
+from .detector import Detector
 import argparse
 
 parser = argparse.ArgumentParser(description='De-Duplicate file detection.')

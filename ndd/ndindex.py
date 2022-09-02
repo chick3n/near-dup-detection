@@ -4,7 +4,7 @@
 # the Jaccard Coefficient between documents.
 
 import math, random, sys
-from ngram import Ngram
+from .ngram import Ngram
 
 class NearDuplicatesIndex:
     def __init__(self):
