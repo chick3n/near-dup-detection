@@ -27,6 +27,9 @@ class Detector:
             doc = f.read().strip().strip(",.!|&-_()[]<>{}/\"'").strip().split(" ")
             return doc
 
+    def get_source_files(self):
+        return self.check_files
+
     # Public: returns the full relative path from the base dir of the project
     #         to the filename input
     #
