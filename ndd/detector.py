@@ -51,5 +51,5 @@ class Detector:
                 file2 = self.filename(f2[0], f2[1])
                 jaccard = self.index.get_jaccard(sketch, file2)
                 if jaccard > 0.5:
-                    matches.append("%s and %s are near-duplicates, with Jaccard value of %0.3f." % (f1, f2, jaccard))
-        return "\n".join(matches)
+                    matches.append((f1, f2, jaccard))
+        return matches
